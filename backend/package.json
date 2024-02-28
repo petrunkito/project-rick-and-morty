@@ -1,0 +1,16 @@
+{
+  "name": "backend-rick-and-morty",
+  "version": "1.0.0",
+  "description": "backend encargado de guardar los personajes favoritos del usuario",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Aurelio Antonio Obando Flores",
+  "license": "ISC",
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^8.2.0"
+  }
+}
