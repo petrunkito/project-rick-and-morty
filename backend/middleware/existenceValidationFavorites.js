@@ -1,9 +1,19 @@
+/**
+ * Este middleware se encargara de validar si un personaje existe en la base de datos
+ * este se puede usar cuando:
+ * se quiere tener un elemento -> https://domain/get/id
+ * se quiere eliminar un elemento -> https://domain/delete/id
+ * se quiere editar un elemento -> https://domain/get/id
+ */
 
+
+//obtenemos el model de la coleccion de favoritos
 const modelFavorites = require('../model/modelFavorites')
 
 //reutilizamos algunas funcionas para realizar validaciones
 const {validateIntegerTypeId, validateIDRange, validateExistence} = require("../validations/validationFunctions")
 
+//valida si el personaje se encuentra en la base de datos
 const existenceValidation = async (req, res, next) => {
     try {
        

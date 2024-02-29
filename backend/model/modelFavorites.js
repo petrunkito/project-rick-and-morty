@@ -1,4 +1,6 @@
-//este archivo contendra el modelo de la coleccion
+/**
+ * este archivo contendra el modelo de la coleccion 'favorites'
+ */
 
 //mongoose nos ayudara a crear el esquema de los datos
 const mongoose = require("mongoose")

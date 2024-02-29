@@ -1,7 +1,15 @@
-//obtenemos el model de la coleccin de favoritos
+/**
+ * Es middleware se encargara de validar los campos cuando se desea crear o agregar
+ * un personaje a la base de datos.
+ * 
+ * validando tipos de campos, rangos de id, que el elemento a insertar no se encuentre en la 
+ * base de datos.
+ */
+
+//obtenemos el model de la coleccion de favoritos
 const modelFavorites = require('../model/modelFavorites')
 
-//reutilizamos algunas funcionas para realizar validaciones
+//reutilizamos algunas funcionas para realizar validaciones antes de agregar el personaje
 const {
     validateRequiredFields, validateIntegerTypeId,
     validateTypeFields, validateIDRange,
@@ -10,11 +18,10 @@ const {
     validateUrlFormat, validateNonExistence
 } = require("../validations/validationFunctions")
 
-//este middleware se encargara de validar los campos que nos envia el cliente antes de que se inserte en la base de datos
+//este middleware se encargara de validar los campos que nos envia el cliente 
+//antes de que se inserte en la base de datos
 const fieldsValidation = async (req, res, next) => {
     try {
-        
-
 
         //si el cuerpo de la peticion viene vacia, enviamos la siguiente respuesta
         if (!Object.keys(req.body).length) return res.status(400).json({ ok: false, message: "no data was provided for creation" })
@@ -53,6 +60,7 @@ const fieldsValidation = async (req, res, next) => {
         //validamos que el personaje no se encuentre en la base de datos
         await validateNonExistence(modelFavorites, req.body.id)
 
+        //si todo ocurrio de manera correcta, pasamos al controlador para insertar el personaje
         return next()
 
     } catch (err) {
