@@ -113,5 +113,5 @@ server.js
                 apiBackend.js
                 apiRickAndMorty.js
 
-Este mas o menos seria el flujo de la aplicacion
+Este mas o menos seria el flujo de la aplicacion al ejecutarse, al pasar por cada uno de los archivos
 
