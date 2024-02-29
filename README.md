@@ -23,7 +23,7 @@ Antes de ejecutar los proyectos, debe usted tener instaladas las siguientes depe
 
 -Git version 2.42.0
 
-#Comienzo rapido:
+## Comienzo rapido:
 
 Para no tener problemas ve a alguna parte de tu computadora, escritorio, documentos, la de tu preferencia y utiliza este comando:
 ```sh
