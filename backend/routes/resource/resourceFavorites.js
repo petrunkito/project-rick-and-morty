@@ -1,9 +1,12 @@
 const express = require("express")
-const app = express()
+const routes = express.Router()
 const controllerFavorites = require("../../controller/controllerFavorites")
 
-app.get('/', controllerFavorites.getSeveral)
-app.get(":id", controllerFavorites.getOne)
-app.post("/", controllerFavorites.create)
-app.put("/", controllerFavorites.update)
-app.delete("/:id", controllerFavorites.delete)
+routes.get('/', controllerFavorites.getSeveral)
+routes.get(":id", controllerFavorites.getOne)
+routes.post("/", controllerFavorites.create)
+routes.put("/", controllerFavorites.update)
+routes.delete("/:id", controllerFavorites.delete)
+
+
+module.exports = routes
