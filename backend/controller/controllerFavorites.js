@@ -41,3 +41,5 @@ controllerFavorites.delete = (req, res)=>{
         return res.status(500).json({ok:false, message:"an error ocurred with the server"})
     }
 }
+
+module.exports =  controllerFavorites
