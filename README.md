@@ -17,6 +17,7 @@ Antes de ejecutar los proyectos, debe usted tener instaladas las siguientes depe
 MongoDB como motor de base de datos version 6.0.0 tambien funciona con la ultima version
 MongoSH la CLI de mongodb para consultar los datos de manera manual(opcional) version 1.5.4
 NodeJs version 14.17.1
+Git version 2.42.0
 
 Comienzo rapido:
 
