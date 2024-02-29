@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const Schema = new mongoose.Schema({
-    id: { type: mongoose.Types.ObjectId, required: true },
+    id: { type: String, required: true },
     name: { type: String, required: true, unique: true },
     status: {type: String, required: true},
     species: {type: String, required: true},
