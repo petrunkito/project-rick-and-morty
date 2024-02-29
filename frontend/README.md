@@ -1,63 +1,111 @@
-"introduccion"
-
-El front-end es una interfaz muy sencilla, lo primero que verias seria el home de la pagina, en el cual podras subir tus videos, ver previamente cuales has subido y poder eliminarlos.
-
-Cuando presiones en algun video que hallas subido, se te redirigira a la pagina de video.html, donde se empezara a reproducir tu video, y a medida que vallas avanzando, el front-end le pedira a la api mas fragmentos para evitar detener la reproduccion e interrumpir la experiencia de usuario. Aqui podras adelantar, retroceder, cambiar la resolucion del video y de manera automatica el reproductor se ira adaptando a tus necesidades.
-
-si quieres subir un video, lo unico que tienes que hacer es presionar el boton de "Subir video", presionas el boton de "buscar" y eliges el video que desearias subir, inmediatamente se te mostrara el nombre del video que quieres subir y se te habilitara el boton de "Subir", para que puedas enviarlo al back-end y este haga toda su magia, los formatos soportados son mp4, webm, mkv, avi, si subes un archivo que no tenga estos formatos, se te mostrara un mensaje indicandote los formatos requeridos, luego de enviarlo, recibiras un mensaje de que el video se subio exitosamente, y esperar hasta que esta ya este listo para su reproduccion, actualizas la pagina y este ya estaria listo para ser visto.
-
-"archivos y su funcionamiento"
-
-En este apartado sabras para que funciona cada archivo, asi te sera mas facil editarlo a tu gusto
-
-|-cliente
-|---|pages
-|------|index.html
-|------|page404.html
-|------|video.html
-|---|public
-|------|css
-|---------|style-404.css
-|---------|style-video.css
-|---------|style.css
-|------|img
-|---------|img.(jpg,mpg)
-|------|js
-|---------|index-html
-|------------|deleteVideo.js
-|------------|drawingElements.js
-|------------|index.js
-|------------|navFuncionality.js
-|------------|uploadFile.js
-|---------|video-html
-|------------|controlsVideo.js
-|------------|drawResolutions.js
-|------------|hls.js
-|------------|index.js
-|------------|mux.min.js
-|------------|progressBar.js
-|------------|test-hls.js
-|---------api.js
-|---|routes
-|------|resource
-|---------|home.js
-|---------|page404.js
-|---------|video.js
-|------|index.js
-|---|app.js
-|---|package.json
-|---|paths.js
-|---|README.MD
-|---|server.js
-|---|.gitignore
-
-pages:
-
-en pages encontraras cada pagina de la aplicacion el index.html(la pagina inicial donde podras ver todos tus video subidos), page404.html(si digitas una ruta incorrecta)
-
-"desgloce"
+Indicaciones para la instalacion 
 
 
-"empecemos"
 
-//!aurelio seria genial que arreglaras cuando se busca un video y este id esta malo, seria genial que enviaras el error 404
+Estructura del proyecto:
+
+frontend 
+        public
+            404
+                css
+                js
+                404.html
+            favorites
+                css
+                    style.css
+                js
+                    deleteFavorite.js
+                    drwaFavorites.js
+                    index.js
+                favorites.html
+            home
+                css
+                    style.css
+                js
+                    addFavorite.js
+                    drawImages.js
+                    index.js
+                home.html
+            shared
+                img
+                    .png, .jpg
+                apiBackend.js
+                apiRickAndMorty.js
+        routes
+            resource
+                favorites.js
+                home.js
+                page404.js
+            index.js
+    .gitignore
+    app.js
+    package-lock.json
+    package.json
+    paths.js
+    README.md
+    server.js
+
+Esta es la estructura del proyecto frontend.
+
+Raiz: 
+En la raiz del proyecto nos encontramos con app.js que contiene las configuraciones iniciales de todo proyecto express(rutas, servidor, puerto), tambien server.js que se encarga de levantar el servidor. path.js es un archivo que contiene rutas a los diferentes niveles del proyecto, eso se hizo asi, ya que nodejs usa rutas absolutas asi: "C:/ruta/ruta" en vez de relativa "../../file.js".
+
+luego tenemos a package.json que contiene informacion del proyecto, comandos y dependencias
+
+Public:
+
+la carpeta public contiene los archivos publicos, por ejemplo 404, favorites, home, son carpeta que contienen las diferentes paginas, y cada una de ellas, tiene por aparte sus archivo js y css.
+
+la carpeta shared contiene, archivos, imagenes, scripts, que pueden ser accedido por todas las paginas, por ejemplo apiBackend.js es el arhivo que contiene cada uno de los metodos par las peticiones hacia la api del backend, y el archivo apiRickAndMorty.js hacia la api publica de Rick and Morty.
+
+
+Pero, ¿por donde empieza este proyecto?
+
+aqui te explicaremos por donde se empieza a ejecutar el proyecto.
+
+El proyecto comienza por el archivo server.js en la raiz del proyecto despues de ejecutar el comando npm start para iniciar la ejecucion del mismo.
+
+En ese mismo script, se importa el archivo app.js, que requerira todos los modulos necesarios para su funcionamiento, asu vez manda a llamar al archivo routes/index.js, que es el encargado de manejar las rutas de la aplicacion(se refiera a las paginas de la aplicacion)
+
+En el archivo routes/index.js, se mandan a llamar a los arhivos: home.js, favorites.js y page404, que se encargan de servir las paginas de la aplicacion, cuando se hace una peticion de tipo 'get' por parte del navegador.
+
+Volvemos al archivo app.js para luego indicarle cuales seran los archivos estaticos. luego se esta a la espera de cualquier peticion para poder empezar a cargar las paginas.
+
+¿como se veria el flujo del proyecto de manera grafica?
+
+server.js
+    app.js
+        routes/index.js
+            routes/resource/home.js
+                paths.js
+            routes/resource/favorites.js
+                paths.js
+            routes/resource/page404.js
+                paths.js
+        public
+            404
+                404.html
+            favorites
+                css
+                    style.css
+                js
+                    deleteFavorite.js
+                    drawFavorite.js
+                    index.js
+                favorites.html
+            home
+                css
+                    style.css
+                js
+                    addFavorite.js
+                    drawImages.js
+                    index.js
+                home.html
+            shared
+                img
+                    .png, jpg
+                apiBackend.js
+                apiRickAndMorty.js
+
+Este mas o menos seria el flujo de la aplicacion
+

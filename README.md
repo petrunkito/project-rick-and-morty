@@ -6,7 +6,7 @@ Importante:
 
 En este proyecto, se ha separado la parte logica del frontend y el backend, cada uno en carpetas separadas, ademas cada aplicacion se levanta en un puerto diferente, por ejemplo el frontend se levantara en el puerto 5050 y el backend en el puerto 3000.
 
-En cada carpeta estan los README para poder levantar los proyectos; explica como estan estructurados; desde que archivo empieza a leer el programa y detalles tecnicos de cada uno.
+En cada carpeta estan los README.md para poder levantar los proyectos; explica como estan estructurados; desde que archivo empieza a leer el programa y detalles tecnicos de cada uno.
 
 Algo muy importante, una vez instaladas las dependencias y paquetes, te recomendamos activar el demonio de MongoDb, si no lo haces y ejecutas los proyectos, el backend, intentara reconectarse hasta que puede recuperar la conexion.
 
@@ -18,5 +18,10 @@ MongoDB como motor de base de datos version 6.0.0 tambien funciona con la ultima
 MongoSH la CLI de mongodb para consultar los datos de manera manual(opcional) version 1.5.4
 NodeJs version 14.17.1
 
+Comienzo rapido:
 
+Para no tener problemas ve a alguna parte de tu computadora, escritorio, documentos la de tu preferencia y utiliza este comando:
+git clone https://github.com/petrunkito/project-rick-and-morty.git
+
+lo unico que tienes que hacer ahora, es instalar las dependencias antes mencionadas y luego, seguir las indicaciones de los archivos README.md, si quieres empezar a ejecutar el proyecto inmediatamente, despues de seguir estos pasos, ve al apartado de "Comienzo Rapido" en cada archivo README.md del frontend y el backend
 

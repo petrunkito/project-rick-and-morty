@@ -1,6 +1,6 @@
 /**
- * este archivo contendra la configuracion inicial del proyecto, como la creacion del servidor, la option de la api,
- * el manejo de CORS
+ * este archivo contendra la configuracion inicial del proyecto, como la creacion del servidor, 
+ * la opcion de mostrar la api, el manejo de CORS
  */
 
 //express para crear rutas, middleware y mas
