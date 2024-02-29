@@ -26,7 +26,7 @@ const validateRequiredFields = async (body) => {
 
 /**
  * valida que el "id" del personaje sea un entero
- * @param {int} id - el id del personaje 
+ * @param {Number} id - el id del personaje 
  * @returns {true} retorna true si la validacion es correcta
  */
 const validateIntegerTypeId = async (id) => {
@@ -40,15 +40,15 @@ const validateIntegerTypeId = async (id) => {
 
 /**
  * valida que el cliente nos halla enviado los tipos de datos correcto para los campos: name, status, 
- * species, type, gender, img, url, en este caso todos tienen que ser 'string'
+ * species, type, gender, image, url, en este caso todos tienen que ser 'string'
  * @param {Object} body - un objeto json con la informacin del personaje a agregar a favoritos
  * @returns {true} retorna true si la validacion es correcta
  */
 const validateTypeFields = async (body) => {
     //obtenemos los datos a validar
-    const { name, status, species, type, gender, img, url } = body
+    const { name, status, species, type, gender, image, url} = body
     //los metemos dentro de un arreglo para validar que el tipo de dato sea string
-    const isValidType = [name, status, species, type, gender, img, url, created].every(element => typeof element === "string")
+    const isValidType = [name, status, species, type, gender, image, url].every(element => typeof element === "string")
     //si alguno de los campos no tiene un dato de tipo valido, arrojamos el siguiente error
     if (!isValidType) {
         throw new Error("invalid data type, review the body of the request")
@@ -59,7 +59,7 @@ const validateTypeFields = async (body) => {
 
 /**
  * valida que el "id" del persoaje este en el rango de 1 - 826, que corresponde al 'id' de cada personaje
- * @param {int} id - el id del personaje
+ * @param {Number} id - el id del personaje
  * @returns {true} retorna true si la validacion es correcta
  */
 const validateIDRange = async (id) => {
@@ -123,7 +123,7 @@ const validateGender = async (gender)=>{
 /**
  * valida que el enlace de la imagen del persoaje sea correcto, con un formato 
  * ya establecido como: https://rickandmortyapi.com/api/character/avatar/${id}.jpeg
- * @param {int} id - el id del personaje
+ * @param {Number} id - el id del personaje
  * @param {String} image - el enlace de la imagen del personaje
  * @returns {true} retorna true si la validacion es correcta
  */
@@ -142,7 +142,7 @@ const validateImageFormat = async (id, image)=>{
 /**
  * valida que el enlace del personaje sea correcto, con un formato 
  * ya establecido como: https://rickandmortyapi.com/api/character/${id}
- * @param {int} id - ide del personaje
+ * @param {Number} id - ide del personaje
  * @param {String} url - el enlace del personaje
  * @returns {true} retorna true si la validacion es correcta
  */
@@ -160,18 +160,31 @@ const validateUrlFormat = async (id, url) =>{
 /**
  * valida que un documento no exista en la base de datos
  * @param {ModelMongoose} model - el modelo de la coleccion a buscar 
- * @param {int} id - el id del elemento a buscar
+ * @param {Number} id - el id del elemento a buscar
  * @returns {true} retorna true si la validacion es correcta
  */
 const validateNonExistence = async (model, id)=>{
     //buscamos el documento en la coleccion
-    const document = await model.find({id})
+    const document = await model.findOne({id})
     //si el documento se encuentra en la base de datos arrojamos el siguiente error, indicando que ya existe en la base de datos.
     if (document){
         throw new Error("the character is already in the database")
     }
     //retornamos si la funcion se ejecuto correctamente
     return true
+}
+
+/**
+ * valida si un documento en una coleccion de la base de datos existe,
+ * @param {ModelMongoose} model - el model de la coleccion a buscar
+ * @param {Number} id - el id del elemento a buscar
+ * @returns {Boolean} - retorna true si el elemento existe en la base de datos y retorna false si no lo encuentra
+ */
+const validateExistence = async(model, id)=>{
+    //buscamos el documento en la coleccion
+    const document = await model.findOne({id})
+    //si encontramos el documento, retornamos true, en caso contrario false
+    return document? true : false
 }
 
 module.exports = {
@@ -184,5 +197,6 @@ module.exports = {
     validateGender,
     validateImageFormat,
     validateUrlFormat,
-    validateNonExistence
+    validateNonExistence,
+    validateExistence
 }

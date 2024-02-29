@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/home/css/style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>Ricy And Morty</h1>
+      <a href="favorites">
+        <button class="favorite-button">Ir a mis favoritos</button>
+      </a>
+    </div>
+    <div class="container"></div>
+
+    <template class="template-img">
+      <div class="content-element" data-id data-status>
+        <div class="content-img">
+          <img
+            class="character-img"
+            src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+            alt="Character Image"
+          />
+        </div>
+        <div class="details">
+          <div class="options">
+            <span class="character-name">Rick</span>
+            <div>
+              <span>Status: </span>
+              <span class="character-status">vivo</span>
+            </div>
+          </div>
+          <div>
+            <span class="favorite">
+              <img
+                class="img-c"
+                src="/shared/img/corazon.png"
+                alt="Heart Image"
+                data-id
+              />
+            </span>
+          </div>
+        </div>
+        <div class="info hide"></div>
+      </div>
+    </template>
+
+    <script defer type="module" src="/home/js/index.js"></script>
+  </body>
+</html>

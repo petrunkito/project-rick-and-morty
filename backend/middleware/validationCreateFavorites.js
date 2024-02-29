@@ -1,17 +1,20 @@
-
+//obtenemos el model de la coleccin de favoritos
 const modelFavorites = require('../model/modelFavorites')
 
+//reutilizamos algunas funcionas para realizar validaciones
 const {
-    validateRequiredFields, validateTypeId,
+    validateRequiredFields, validateIntegerTypeId,
     validateTypeFields, validateIDRange,
     validateAllowedStates, validateDate,
     validateGender, validateImageFormat,
-    validateUrlFormat, validateExistance
+    validateUrlFormat, validateNonExistence
 } = require("../validations/validationFunctions")
 
-
-const fieldValidation = async (req, res, next) => {
+//este middleware se encargara de validar los campos que nos envia el cliente antes de que se inserte en la base de datos
+const fieldsValidation = async (req, res, next) => {
     try {
+        
+
 
         //si el cuerpo de la peticion viene vacia, enviamos la siguiente respuesta
         if (!Object.keys(req.body).length) return res.status(400).json({ ok: false, message: "no data was provided for creation" })
@@ -20,33 +23,35 @@ const fieldValidation = async (req, res, next) => {
         await validateRequiredFields(req.body)
 
         //validamos que el 'id' del personaje sea un entero
-        await validateIntegerTypeId(req.id)
+        await validateIntegerTypeId(req.body.id)
 
         //validamos el tipo de datos de ciertos campos, enviamos el req.body para que valide tales campos
         await validateTypeFields(req.body)
 
+
         //validamos que el "id" se encuentre dentro de un rango valido indicado por la api
         //!Nota: la api de rick and morty solo tiene 826 personajes, por eso razon no establecemos
         //!el rango de manera dinamica
-        await validateIDRange(req.id)
+        await validateIDRange(req.body.id)
 
         //validamos que el estado de un personaje sea valido(muerto, vivo, desconocido)
-        await validateAllowedStates(req.status)
+        await validateAllowedStates(req.body.status)
 
         //validamos que el campo "created" sea una fecha valida
-        await validateDate(req.created)
+        await validateDate(req.body.created)
 
         //validamos que el genero de un personaje sea valido('female', 'male', 'genderless', 'unknown').
         //enviamos el genero del personaje
-        await validateGender(req.gender)
+        await validateGender(req.body.gender)
 
         //validamos que el formato de la direccion de una imagen sea valido
-        await validateImageFormat(req.id, req.image)
-        await validateUrlFormat(req.id, req.url)
+        await validateImageFormat(req.body.id, req.body.image)
+        await validateUrlFormat(req.body.id, req.body.url)
 
         //!Nota: validamos por ultimo la existencia del elemento en la coleccion de favoritos, esto para evitar hacer una peticion
         //!en vano, si alguna de las validaciones posteriores fallaran.
-        await validateExistance(modelFavorites, { id: req.id })
+        //validamos que el personaje no se encuentre en la base de datos
+        await validateNonExistence(modelFavorites, req.body.id)
 
         return next()
 
@@ -55,4 +60,4 @@ const fieldValidation = async (req, res, next) => {
     }
 }
 
-module.exports = fieldValidation
+module.exports = fieldsValidation

@@ -1,33 +1,21 @@
-const express = require("express")
-const http = require("http")
-const cors = require("cors")
-const routes = require("./routes/index")
-const whiteList = require("./config/whiteList").url
+const express = require("express")//?para la construccion de la api
+const http = require("http")//?para crear nuestro servidor
+const pages = require('./routes/')
 
-require('./model/dbConection')()
+let app = express()
+let server = http.Server(app)
+
+app.disable('x-powered-by');//?desactivamos la cabecera "x-powered-by", para evitar que los atacantes sepan que usa express, e  iniciar ataques con destinos específicos.
+app.use(express.static(`${__dirname}/public`))//?aqui servimos los archivos publicos
+app.set("port", process.env.PORT || 5050)//?vemos que puerto usaremos
+app.use(express.json())//?para que formatee en json
+app.use(pages)
 
 
-const app = express()
-const server = http.createServer(app)
+module.exports = {server, app}
 
-// app.disable("x-powered-by");
-app.set("port", process.env.PORT || 3000)
-
-/*const corsOptions = {
-    origin: (origin, callback)=>{
-        if(whiteList.includes(origin)){
-            callback(null, true)
-        }else{
-            callback(new Error('Not allowed by CORS'))
-        }
-    }
-}
-
-app.use(cors(corsOptions))*/
-app.use(express.json())
-app.use("/api", routes)
-
-module.exports = {app, server}
+//?aurelio, ya lo unico que hace falta es documentar todo el codigo y habremos terminado
+//? todo el proyecto, te felicito AURELIO, lo lograste
 
 
 
