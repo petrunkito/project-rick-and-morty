@@ -1,15 +1,15 @@
-Comienzo rapido
+## Comienzo rapido
 
 antes de hacer cualquier accion en esta parte, te recomendamos leer el archivo README.md del inicio del proyecto.
 
 para empezar de manera inmediata, utiliza la consola del sistema y ejecuta el siguiente comando "npm i" para instalar las dependencias del proyecto. una vez terminada las instalaciones, ejecuta el comando "nmp start" para levantar el proyecto en el puerto 5050.
 
 Luego dirigete al navegador y copia este link http://localhost:5050/ en la barra de direcciones.
-
 esto seria todo lo que tendrias que hacer hata el momento en esta parte del proyecto.
 
-Estructura del proyecto:
+## Estructura del proyecto 
 
+```sh
 frontend 
         public
             404
@@ -50,6 +50,7 @@ frontend
     paths.js
     README.md
     server.js
+```
 
 Esta es la estructura del proyecto frontend.
 
@@ -64,8 +65,7 @@ la carpeta public contiene los archivos publicos, por ejemplo 404, favorites, ho
 
 la carpeta shared contiene, archivos, imagenes, scripts, que pueden ser accedido por todas las paginas, por ejemplo apiBackend.js es el arhivo que contiene cada uno de los metodos par las peticiones hacia la api del backend, y el archivo apiRickAndMorty.js hacia la api publica de Rick and Morty.
 
-
-Pero, ¿por donde empieza este proyecto?
+## Pero, ¿por donde empieza este proyecto?
 
 aqui te explicaremos por donde se empieza a ejecutar el proyecto.
 
@@ -77,8 +77,8 @@ En el archivo routes/index.js, se mandan a llamar a los arhivos: home.js, favori
 
 Volvemos al archivo app.js para luego indicarle cuales seran los archivos estaticos. luego se esta a la espera de cualquier peticion para poder empezar a cargar las paginas.
 
-¿como se veria el flujo del proyecto de manera grafica?
-
+## ¿como se veria el flujo del proyecto de manera grafica?
+```sh
 server.js
     app.js
         routes/index.js
@@ -112,6 +112,6 @@ server.js
                     .png, jpg
                 apiBackend.js
                 apiRickAndMorty.js
+```
 
 Este mas o menos seria el flujo de la aplicacion al ejecutarse, al pasar por cada uno de los archivos
-
