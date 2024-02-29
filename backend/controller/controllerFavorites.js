@@ -26,13 +26,20 @@ controllerFavorites.getAll = async (req, res)=>{
 
 controllerFavorites.create = async (req, res)=>{
     try{
+        //!Nota: debido a la asincronia de javascript, algunas peticiones se pueden ejecutar al mismo tiempo
+        //!evitando las validaciones de manera correcta del middleware "middleware/fieldValidationMiddleware.js"
 
-        let {id, name, status, species, type, gender, image, url, created} = req.body
-        
-
-
-
-        return res.status(201).json({ok:true});
+        //si el personaje que se desea insertar a favoritos por alguna rason pasa las validaciones, pero la base de
+        //datos nos arroja un error de campos duplicados, lo manejamos en un segundo trycatch
+        try{
+            const character = await modelFavorites.create(req.body);
+            return res.status(201).json({ok:true, message:"successfully created resource"});
+        }catch(err){
+            cosnole.log("codigoa error: ", err)
+            //E11000
+            if(err.code === 11000 ) return res.status(409).json({ok:false, message:"the informatin is duplicated"})
+            throw new Error("")
+        }
     }catch(err){
         return res.status(500).json({ok:false, message:"an error ocurred with the server"})
     }
