@@ -4,7 +4,7 @@ const cors = require("cors")
 const routes = require("./routes/index")
 const whiteList = require("./config/whiteList").url
 
-require('./model/dbConection')()
+require('./model/dbConection')
 
 
 const app = express()
