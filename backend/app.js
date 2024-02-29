@@ -4,12 +4,13 @@ const cors = require("cors")
 const routes = require("./routes/index")
 const whiteList = require("./config/whiteList").url
 
+require('./model/dbConection')()
 
 
 const app = express()
 const server = http.createServer(app)
 
-app.disable("x-powered-by");
+// app.disable("x-powered-by");
 app.set("port", process.env.PORT || 3000)
 
 const corsOptions = {
