@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const config = require('../config/db.config.json').local
-const MONGO_URL = process.env.MONGO_URL || `mongodb://${config.local.host}/${config.local.db}`
+const MONGO_URL = process.env.MONGO_URL || `mongodb://${config.host}/${config.db}`
 
 async function init() {
     //?nos conectamos a la base de datos
