@@ -1,8 +1,6 @@
 const express = require("express")
-const { controller } = require("../../controller/controllerFavorites")
 const app = express()
-const shortcut = require("../../shortcut").controller
-const controllerFavorites = require(shortcut+"/controllerFavorites")
+const controllerFavorites = require("../../controller/controllerFavorites")
 
 app.get('/', controllerFavorites.getSeveral)
 app.get(":id", controllerFavorites.getOne)
