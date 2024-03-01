@@ -115,7 +115,7 @@ h1 {
     border-radius: 10px;
     transition: all 1s ease-in;
     text-align: center;
-    font: 22px;
+    font-size: 22px;
     font-weight: bold;
     display: none;
 }
