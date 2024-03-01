@@ -1,11 +1,11 @@
 import api from "/shared/apiRickAndMorty.js"
 
 
-async function init(){
+async function init(page=1){
     const $container = document.querySelector('.container')
     const template = document.querySelector('.template-img')
     const fragment = document.createDocumentFragment()
-    let characters = await api.getPage()
+    let characters = await api.getPage(page)
 
 
     characters.forEach(element => {
@@ -35,6 +35,7 @@ async function init(){
 
     });
 
+    $container.innerHTML = ""
     $container.appendChild(fragment)
 
 

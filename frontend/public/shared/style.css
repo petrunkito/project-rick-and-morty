@@ -15,6 +15,18 @@ html {
     background: linear-gradient(black, rgb(96, 209, 10));
 }
 
+.button-left, .button-right{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.button-left:hover, .button-right:hover{
+    cursor: pointer;
+    background-color: rgb(43, 255, 0);
+}
+
 .favorite-button {
     font-size: 20px;
     border-radius: 10px;
@@ -155,3 +167,4 @@ h1 {
     transform: rotate(37deg);
     scale: 1.02;
 }
+
