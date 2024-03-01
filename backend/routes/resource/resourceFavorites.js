@@ -19,8 +19,6 @@ routes.get('/', controllerFavorites.getAll)
 routes.get(":id", validationExistence, controllerFavorites.getOne)
 //agregamos o creamos un nuevo personaje
 routes.post("/", fieldsValidation, controllerFavorites.create)
-//actualizamos la informacion de un personaje
-routes.put("/", validationExistence, controllerFavorites.update)
 //eliminamos a un personaje de la base de datos
 routes.delete("/:id", validationExistence, controllerFavorites.delete)
 

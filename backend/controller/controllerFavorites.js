@@ -61,14 +61,6 @@ controllerFavorites.create = async (req, res)=>{
     }
 }
 
-//actualizamos la informacion de un personaje
-controllerFavorites.update = async (req, res)=>{
-    try{
-        return res.status(200).json({ok:true});
-    }catch(err){
-        return res.status(500).json({ok:false, message:"an error ocurred with the server"})
-    }
-}
 
 //eliminamos a un personaje de la base de datos
 controllerFavorites.delete = async (req, res)=>{
