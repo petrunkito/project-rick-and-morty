@@ -11,8 +11,8 @@ const http = require("http")
 const cors = require("cors")
 //este es nuestro orquestador, que contiene cada ruta de la api(en este caso solo tiene un recurso que es "favorites")
 const routes = require("./routes/index")
-//la lista de origenes que tiene permitido hacer peticiones a la api
-const whiteList = require("./config/whiteList").url
+//el origen que tiene permitido acceder a la api
+const origin = require("./config/whiteList").url
 
 //establecemos la conexin con la base de datos
 require('./model/dbConection')()
@@ -26,17 +26,12 @@ app.disable("x-powered-by");
 //configuramos el puerto que usara express
 app.set("port", process.env.PORT || 3000)
 
+//en las options de cors, establecemos cual sera el origen
 const corsOptions = {
-    origin: (origin, callback)=>{
-        if(whiteList.includes(origin)){
-            callback(null, true)
-        }else{
-            callback(new Error('Not allowed by CORS'))
-        }
-    }
+    origin:origin
 }
 
-app.use(cors())
+app.use(cors(corsOptions))
 //analiza las solicitudes entrates en JSON
 app.use(express.json())
 //habilitamos nuestra api
