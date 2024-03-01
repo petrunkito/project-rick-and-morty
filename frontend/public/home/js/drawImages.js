@@ -1,6 +1,5 @@
 import api from "/shared/apiRickAndMorty.js"
 
-
 async function init(page=1){
     const $container = document.querySelector('.container')
     const template = document.querySelector('.template-img')

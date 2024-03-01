@@ -2,6 +2,7 @@ import api from "/shared/apiRickAndMorty.js"
 
 import drawImages from "/home/js/drawImages.js"
 
+//encerramos la funcionalidad dentro de una funcion asincrona para evitar bloquear el hilo principal
 async function init(){
     //el boton encargado de regresar a las paginas anteriores
     const buttonLeft = document.querySelector('.button-left')
