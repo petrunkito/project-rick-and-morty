@@ -19,7 +19,6 @@ async function init() {
 
         let idCharacter = target.dataset.id
         let character = await api.getOne(idCharacter)
-        console.log(character, ", ")
 
         let {id, name, status, species, type, gender, image, url, created} = character
         
