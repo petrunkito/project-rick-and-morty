@@ -1,3 +1,4 @@
+
 import api from "/shared/apiRickAndMorty.js"
 import apiBackend from "/shared/apiBackend.js"
 async function init() {
