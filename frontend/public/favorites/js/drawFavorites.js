@@ -15,7 +15,10 @@ async function init(){
         let spanStatus = clone.querySelector(".character-status")
         let img = clone.querySelector('.character-img')
         let imgC = clone.querySelector('.img-c')
-        console.log(clone)
+
+        clone.querySelector(".data-species").innerHTML = `Species: ${element.species}`
+        clone.querySelector(".data-type").innerHTML = `Type: ${element.type||"unknown"}`
+        clone.querySelector(".data-gender").innerHTML = `Gender: ${element.gender}`
 
         let status = element.status.toLowerCase()
         if(status === "alive") content.classList.add("live")
@@ -28,6 +31,9 @@ async function init(){
         spanStatus.innerHTML = element.status
         img.src = element.image
         imgC.dataset.id = element.id
+
+        
+
         fragment.appendChild(clone)
 
     });
