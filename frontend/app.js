@@ -2,7 +2,7 @@
  * este archivo contendra la configuracion inicial del proyecto, como la creacion del servidor, 
  * disponer las paginas de la aplicacion
  */
-
+//
 const express = require("express")//para la construccion de la api
 const http = require("http")//para crear nuestro servidor
 const pages = require('./routes/index')
